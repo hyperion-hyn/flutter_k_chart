@@ -4,7 +4,10 @@ class ChartColors {
   ChartColors._();
 
   //背景颜色
+  //new
   static const Color bgColor = Color(0xffffffff);
+
+  // old
   //static const Color bgColor = Color(0xff0D141E);
 
   static const Color kLineColor = Color(0xff4C86CD);

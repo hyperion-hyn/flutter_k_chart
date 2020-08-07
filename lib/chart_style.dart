@@ -42,7 +42,8 @@ class ChartColors {
   static const Color markerBorderColor = Color(0xff6C7A86);
 
   //选中后显示值背景的填充颜色
-  static const Color markerBgColor = Color(0xff0D1722);
+//  static const Color markerBgColor = Color(0xff0D1722);
+  static const Color markerBgColor = Color(0xffffffff);
 
   //实时线颜色等
   static const Color realTimeBgColor = Color(0xff0D1722);

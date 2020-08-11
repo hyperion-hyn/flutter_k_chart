@@ -105,6 +105,7 @@ class DepthChartPainter extends CustomPainter {
     canvas.save();
     //绘制买入区域
     drawBuy(canvas);
+
     //绘制卖出区域
     drawSell(canvas);
 
@@ -234,7 +235,7 @@ class DepthChartPainter extends CustomPainter {
     }
 
     //画底部
-    TextPainter priceTP = getTextPainter(entity.price.toStringAsFixed(2));
+    TextPainter priceTP = getTextPainter(entity.price.toStringAsFixed(2), ChartColors.selectedTextColor);
     priceTP.layout();
     double left;
     if (dx <= priceTP.width / 2) {
@@ -245,7 +246,7 @@ class DepthChartPainter extends CustomPainter {
       left = dx - priceTP.width / 2;
     }
     Rect bottomRect =
-        Rect.fromLTRB(left - 3, mDrawHeight + 3, left + priceTP.width + 3, mDrawHeight + mPaddingBottom);
+    Rect.fromLTRB(left - 3, mDrawHeight + 3, left + priceTP.width + 3, mDrawHeight + mPaddingBottom);
     canvas.drawRect(bottomRect, selectPaint);
     canvas.drawRect(bottomRect, selectBorderPaint);
     priceTP.paint(
@@ -253,7 +254,7 @@ class DepthChartPainter extends CustomPainter {
         Offset(bottomRect.left + (bottomRect.width - priceTP.width) / 2,
             bottomRect.top + (bottomRect.height - priceTP.height) / 2));
     //画左边
-    TextPainter amountTP = getTextPainter(entity.amount.toStringAsFixed(2));
+    TextPainter amountTP = getTextPainter(entity.amount.toStringAsFixed(2), ChartColors.selectedTextColor);
     amountTP.layout();
     double y = getY(entity.amount);
     double rightRectTop;
@@ -299,7 +300,7 @@ class DepthChartPainter extends CustomPainter {
 
   double getSellX(int position) => position * mSellPointWidth + mDrawWidth;
 
-  getTextPainter(String text, [Color color = Colors.black]) => TextPainter(
+  getTextPainter(String text, [Color color = Colors.black38]) => TextPainter(
       text: TextSpan(text: "$text", style: TextStyle(color: color, fontSize: 10)),
       textDirection: TextDirection.ltr);
 
@@ -313,6 +314,6 @@ class DepthChartPainter extends CustomPainter {
 //        oldDelegate.mSellData != mSellData ||
 //        oldDelegate.isLongPress != isLongPress ||
 //        oldDelegate.pressOffset != pressOffset;
-  return true;
+    return true;
   }
 }

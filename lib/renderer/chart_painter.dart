@@ -20,27 +20,27 @@ class ChartPainter extends BaseChartPainter {
 
   ChartPainter(
       {@required datas,
-      @required scaleX,
-      @required scrollX,
-      @required isLongPass,
-      @required selectX,
-      mainState,
-      volState,
-      secondaryState,
-      this.sink,
-      bool isLine,
-      this.controller,
-      this.opacity = 0.0})
+        @required scaleX,
+        @required scrollX,
+        @required isLongPass,
+        @required selectX,
+        mainState,
+        volState,
+        secondaryState,
+        this.sink,
+        bool isLine,
+        this.controller,
+        this.opacity = 0.0})
       : super(
-            datas: datas,
-            scaleX: scaleX,
-            scrollX: scrollX,
-            isLongPress: isLongPass,
-            selectX: selectX,
-            mainState: mainState,
-            volState: volState,
-            secondaryState: secondaryState,
-            isLine: isLine);
+      datas: datas,
+      scaleX: scaleX,
+      scrollX: scrollX,
+      isLongPress: isLongPass,
+      selectX: selectX,
+      mainState: mainState,
+      volState: volState,
+      secondaryState: secondaryState,
+      isLine: isLine);
 
   @override
   void initChartRenderer() {
@@ -66,7 +66,7 @@ class ChartPainter extends BaseChartPainter {
 
     if (mVolRect != null) {
       Rect volRect =
-          Rect.fromLTRB(0, mVolRect.top - ChartStyle.childPadding, mVolRect.width, mVolRect.bottom);
+      Rect.fromLTRB(0, mVolRect.top - ChartStyle.childPadding, mVolRect.width, mVolRect.bottom);
       canvas.drawRect(volRect, mBgPaint);
     }
 
@@ -102,7 +102,7 @@ class ChartPainter extends BaseChartPainter {
       mVolRenderer?.drawChart(lastPoint, curPoint, lastX, curX, size, canvas);
       mSecondaryRenderer?.drawChart(lastPoint, curPoint, lastX, curX, size, canvas);
     }
-
+    //Colors.grey
     if (isLongPress == true) drawCrossLine(canvas, size);
     canvas.restore();
   }
@@ -148,7 +148,7 @@ class ChartPainter extends BaseChartPainter {
     var index = calculateSelectedX(selectX);
     KLineEntity point = getItem(index);
 
-    TextPainter tp = getTextPainter(format(point.close), color: Colors.white);
+    TextPainter tp = getTextPainter(format(point.close), color: ChartColors.selectedTextColor);
     double textHeight = tp.height;
     double textWidth = tp.width;
 
@@ -186,7 +186,7 @@ class ChartPainter extends BaseChartPainter {
       tp.paint(canvas, Offset(x + w1 + w2, y - textHeight / 2));
     }
 
-    TextPainter dateTp = getTextPainter(getDate(point.id), color: Colors.white);
+    TextPainter dateTp = getTextPainter(getDate(point.id), color: ChartColors.selectedTextColor);
     textWidth = dateTp.width;
     r = textHeight / 2;
     x = translateXtoX(getX(index));
@@ -252,6 +252,7 @@ class ChartPainter extends BaseChartPainter {
     var index = calculateSelectedX(selectX);
     KLineEntity point = getItem(index);
     Paint paintY = Paint()
+//      ..color = Colors.black12
       ..color = Colors.white12
       ..strokeWidth = ChartStyle.vCrossWidth
       ..isAntiAlias = true;
@@ -262,18 +263,23 @@ class ChartPainter extends BaseChartPainter {
         Offset(x, ChartStyle.topPadding), Offset(x, size.height - ChartStyle.bottomDateHigh), paintY);
 
     Paint paintX = Paint()
-      ..color = Colors.white
+      ..color = ChartColors.selectedTextColor
       ..strokeWidth = ChartStyle.hCrossWidth
       ..isAntiAlias = true;
     // k线图横线
     canvas.drawLine(Offset(-mTranslateX, y), Offset(-mTranslateX + mWidth / scaleX, y), paintX);
-//    canvas.drawCircle(Offset(x, y), 2.0, paintX);
-    canvas.drawOval(Rect.fromCenter(center: Offset(x, y), height: 2.0 * scaleX, width: 2.0), paintX);
+
+    Paint paintOvalX = Paint()
+      ..color = ChartColors.realTimeLineColor
+      ..strokeWidth = ChartStyle.hCrossWidth
+      ..isAntiAlias = true;
+    //canvas.drawCircle(Offset(x, y), 2.0, paintX);
+    canvas.drawOval(Rect.fromCenter(center: Offset(x, y), height: 2.0 * scaleX, width: 2.0), paintOvalX);
   }
 
   final Paint realTimePaint = Paint()
-        ..strokeWidth = 1.0
-        ..isAntiAlias = true,
+    ..strokeWidth = 1.0
+    ..isAntiAlias = true,
       pointPaint = Paint();
 
   ///画实时价格线
@@ -301,10 +307,10 @@ class ChartPainter extends BaseChartPainter {
       if (isLine) {
         startAnimation();
         Gradient pointGradient =
-            RadialGradient(colors: [Colors.white.withOpacity(opacity ?? 0.0), Colors.transparent]);
+        RadialGradient(colors: [ChartColors.selectedTextColor.withOpacity(opacity ?? 0.0), Colors.transparent]);
         pointPaint.shader = pointGradient.createShader(Rect.fromCircle(center: Offset(x, y), radius: 14.0));
         canvas.drawCircle(Offset(x, y), 14.0, pointPaint);
-        canvas.drawCircle(Offset(x, y), 2.0, realTimePaint..color = Colors.white);
+        canvas.drawCircle(Offset(x, y), 2.0, realTimePaint..color = ChartColors.selectedTextColor);
       } else {
         stopAnimation(); //停止一闪闪
       }
@@ -356,12 +362,12 @@ class ChartPainter extends BaseChartPainter {
       canvas.drawPath(
           path,
           realTimePaint
-            ..color = ChartColors.realTimeTextColor
+            ..color = ChartColors.realTimeTextBorderColor
             ..shader = null);
     }
   }
 
-  TextPainter getTextPainter(text, {color = Colors.white}) {
+  TextPainter getTextPainter(text, {color = ChartColors.selectedTextColor}) {
     TextSpan span = TextSpan(text: "$text", style: getTextStyle(color));
     TextPainter tp = TextPainter(text: span, textDirection: TextDirection.ltr);
     tp.layout();

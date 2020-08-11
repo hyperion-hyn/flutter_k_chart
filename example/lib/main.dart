@@ -85,17 +85,26 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Stack(children: <Widget>[
             Container(
-              height: 450,
-              margin: EdgeInsets.symmetric(horizontal: 10),
               width: double.infinity,
-               child: KChartWidget(
-                 datas,
-                 isLine: isLine,
-                 mainState: _mainState,
-                 secondaryState: _secondaryState,
-                 volState: VolState.VOL,
-                 fractionDigits: 4,
-               ),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 10,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 340,
+                    child: KChartWidget(
+                      datas,
+                      isLine: isLine,
+                      mainState: _mainState,
+                      secondaryState: _secondaryState,
+                      volState: VolState.VOL,
+                      fractionDigits: 4,
+                    ),
+                  ),
+                ],
+              ),
             ),
             if (showLoading)
               Container(
@@ -146,15 +155,15 @@ class _MyHomePageState extends State<MyHomePage> {
         button("1month", onPressed: () async {
 //              showLoading = true;
 //              setState(() {});
-              //getData('1mon');
-              String result = await rootBundle.loadString('assets/kmon.json');
-              Map parseJson = json.decode(result);
-              List list = parseJson['data'];
-              datas = list.map((item) => KLineEntity.fromJson(item)).toList().reversed.toList().cast<KLineEntity>();
-              DataUtil.calculate(datas);
+          //getData('1mon');
+          String result = await rootBundle.loadString('assets/kmon.json');
+          Map parseJson = json.decode(result);
+          List list = parseJson['data'];
+          datas = list.map((item) => KLineEntity.fromJson(item)).toList().reversed.toList().cast<KLineEntity>();
+          DataUtil.calculate(datas);
         }),
         FlatButton(
-            onPressed: (){
+            onPressed: () {
               showLoading = true;
               setState(() {});
               getData('1day');
@@ -196,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<String> getIPAddress(String period) async {
     //火币api，需要翻墙
-    var url = 'https://api.huobi.br.com/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt';
+    var url = 'https://api.huobi.br.com/market/history/kline?period=${period ?? '15min'}&size=300&symbol=btcusdt';
     String result;
     var response = await http.get(url).timeout(Duration(seconds: 7));
     if (response.statusCode == 200) {

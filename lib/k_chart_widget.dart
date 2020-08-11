@@ -183,13 +183,13 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
   }
 
   Widget _buildItem(String info, String infoName) {
-    Color color = Colors.white;
+    Color color = ChartColors.selectedTextColor;
     if (info.startsWith("+"))
       color = Colors.green;
     else if (info.startsWith("-"))
       color = Colors.red;
     else
-      color = Colors.white;
+      color = ChartColors.selectedTextColor;
     return Container(
       constraints: BoxConstraints(minWidth: 95, maxWidth: 110, maxHeight: 14.0, minHeight: 14.0),
       child: Row(
@@ -197,7 +197,7 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text("$infoName", style: TextStyle(color: Colors.white, fontSize: ChartStyle.defaultTextSize)),
+          Text("$infoName", style: TextStyle(color: ChartColors.selectedTextColor, fontSize: ChartStyle.defaultTextSize)),
           SizedBox(width: 5),
           Text(info, style: TextStyle(color: color, fontSize: ChartStyle.defaultTextSize)),
         ],

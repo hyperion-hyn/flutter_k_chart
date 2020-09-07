@@ -197,9 +197,9 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text("$infoName", style: TextStyle(color: ChartColors.selectedTextColor, fontSize: ChartStyle.defaultTextSize)),
+          Text("$infoName", style: TextStyle(color: ChartColors.selectedTextColor, fontSize: ChartStyle.defaultTextSize, fontWeight: FontWeight.w500)),
           SizedBox(width: 5),
-          Text(info, style: TextStyle(color: color, fontSize: ChartStyle.defaultTextSize)),
+          Text(info, style: TextStyle(color: color, fontSize: ChartStyle.defaultTextSize, fontWeight: FontWeight.w500)),
         ],
       ),
     );

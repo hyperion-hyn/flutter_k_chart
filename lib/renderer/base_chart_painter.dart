@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 export 'package:flutter/material.dart' show Color, required, TextStyle, Rect, Canvas, Size, CustomPainter;
 import 'package:flutter/material.dart' show Color, required, TextStyle, Rect, Canvas, Size, CustomPainter;
 import 'package:flutter_k_chart/utils/date_format_util.dart';
@@ -296,8 +297,8 @@ abstract class BaseChartPainter extends CustomPainter {
   ///translateX转化为view中的x
   double translateXtoX(double translateX) => (translateX + mTranslateX) * scaleX;
 
-  TextStyle getTextStyle(Color color) {
-    return TextStyle(fontSize: ChartStyle.defaultTextSize, color: color);
+  TextStyle getTextStyle(Color color, {double fontSize}) {
+    return TextStyle(fontSize: fontSize==null?ChartStyle.defaultTextSize:fontSize, color: color, fontWeight: FontWeight.w500);
   }
 
   void drawRealTimePrice(Canvas canvas, Size size);

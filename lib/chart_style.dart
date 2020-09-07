@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' show Color;
+
 /*
 class ChartColorsOld {
   ChartColors._();
@@ -61,35 +62,51 @@ class ChartColors {
   ChartColors._();
 
   //背景颜色
-  static const Color bgColor = Color(0xffffffff);
+  static const Color bgColor = Color(0xfffffefe);
 
   static const Color kLineColor = Color(0xff4C86CD);
-  static const Color gridColor = Color(0xFFD6D6D6);
+//  static const Color gridColor = Color(0xFFD6D6D6);
+  static const Color gridColor = Color(0xffEEF0F3);
+
   static const List<Color> kLineShadowColor = [Color(0x554C86CD), Color(0x00000000)]; //k线阴影渐变
-  static const Color ma5Color = Color(0xffC9B885);
-  static const Color ma10Color = Color(0xff6CB0A6);
-  static const Color ma30Color = Color(0xff9979C6);
+
+  static const Color ma5Color = Color(0xffF7BC00);
+  static const Color ma10Color = Color(0xff5AD0BE);
+  static const Color ma30Color = Color(0xffC688FD);
   static const Color upColor = Color(0xff4DAA90);
   static const Color dnColor = Color(0xffC15466);
-  static const Color volColor = Color(0xff4729AE);
 
-  static const Color macdColor = Color(0xff4729AE);
-  static const Color difColor = Color(0xffC9B885);
-  static const Color deaColor = Color(0xff6CB0A6);
+  static const Color volColor = Color(0xff3334FC);
 
-  static const Color kColor = Color(0xffC9B885);
-  static const Color dColor = Color(0xff6CB0A6);
-  static const Color jColor = Color(0xff9979C6);
-  static const Color rsiColor = Color(0xffC9B885);
+//  static const Color macdColor = Color(0xff4729AE);
+//  static const Color difColor = Color(0xffC9B885);
+//  static const Color deaColor = Color(0xff6CB0A6);
+  static const Color macdColor = Color(0xff3334FC);
+  static const Color difColor = Color(0xffF7BC00);
+  static const Color deaColor = Color(0xff5AD0BE);
 
-  static const Color yAxisTextColor = Color(0xff60738E); //右边y轴刻度
-  static const Color xAxisTextColor = Color(0xff60738E); //下方时间刻度
+//  static const Color kColor = Color(0xffC9B885);
+//  static const Color dColor = Color(0xff6CB0A6);
+//  static const Color jColor = Color(0xff9979C6);
+  static const Color kColor = Color(0xffF7BC00);
+  static const Color dColor = Color(0xff5AD0BE);
+  static const Color jColor = Color(0xffC688FD);
+  static const Color rsiColor = Color(0xffF7BC00);
+
+//  static const Color yAxisTextColor = Color(0xff60738E); //右边y轴刻度
+//  static const Color xAxisTextColor = Color(0xff60738E); //下方时间刻度
+//  static const Color maxMinTextColor = Color(0xff000000); //最大最小值的颜色
+
+  static const Color yAxisTextColor = Color(0xff8398A8); //右边y轴刻度
+  static const Color xAxisTextColor = Color(0xff8398A8); //下方时间刻度
 
   static const Color maxMinTextColor = Color(0xff000000); //最大最小值的颜色
 
   //深度颜色
-  static const Color depthBuyColor = Color(0xff60A893);
-  static const Color depthSellColor = Color(0xffC15866);
+  static Color depthBuyColor = Color(0xffCBEEE8);
+  static Color depthSellColor = Color(0xffF5DADF);
+  static Color depthBuyLineColor = Color(0xff00A682);
+  static Color depthSellLineColor = Color(0xffCF3756);
 
   //选中后显示值边框颜色
   static const Color markerBorderColor = Color(0xff000000);
@@ -97,19 +114,23 @@ class ChartColors {
   //选中后显示值背景的填充颜色
   static const Color markerBgColor = Color(0xffffffff);
 
-
   //实时线颜色等
   static const Color realTimeBgColor = Color(0xffffffff);
-  static const Color rightRealTimeTextColor = Color(0xff4C86CF);
-  static const Color realTimeTextBorderColor = Color(0xFFD6D6D6);
-  static const Color realTimeTextColor = Color(0xFF616161);
+//  static const Color rightRealTimeTextColor = Color(0xff4C86CF);
+  static const Color rightRealTimeTextColor = Color(0xff0053EB);
+
+  static const Color realTimeTextBorderColor = Color(0xFF8DA1AE);
+//  static const Color realTimeTextColor = Color(0xFF616161);
+  static const Color realTimeTextColor = Color(0xFF869AAA);
 
   //实时线
   static const Color realTimeLineColor = Color(0xffffffff);
-  static const Color realTimeLongLineColor = Color(0xff4C86CD);
+//  static const Color realTimeLongLineColor = Color(0xff4C86CD);
+//  static const Color realTimeLongLineColor = Color(0xffC4CED5);
+  static const Color realTimeLongLineColor = Color(0xffD8DEE1);
 
-  static const Color simpleLineUpColor = Color(0xff6CB0A6);
-  static const Color simpleLineDnColor = Color(0xffC15466);
+//  static const Color simpleLineUpColor = Color(0xff6CB0A6);
+//  static const Color simpleLineDnColor = Color(0xffC15466);
 
   static const Color selectedTextColor = Color(0xff000000);
 }
@@ -124,7 +145,7 @@ class ChartStyle {
   static const double candleWidth = 8.5;
 
   //蜡烛中间线的宽度
-  static const double candleLineWidth = 1.5;
+  static const double candleLineWidth = 0.5;
 
   //vol柱子宽度
   static const double volWidth = 8.5;
@@ -134,14 +155,16 @@ class ChartStyle {
 
   //垂直交叉线宽度
   static const double vCrossWidth = 8.5;
+//  static const double vCrossWidth = 0.25;
 
   //水平交叉线宽度
   static const double hCrossWidth = 0.5;
+//  static const double hCrossWidth = 0.25;
 
   //网格
-  static const int gridRows = 3, gridColumns = 4;
+  static const int gridRows = 3, gridColumns = 5;
 
   static const double topPadding = 30.0, bottomDateHigh = 20.0, childPadding = 25.0;
 
-  static const double defaultTextSize = 10.0;
+  static const double defaultTextSize = 8.0;
 }

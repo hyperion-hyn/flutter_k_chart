@@ -53,6 +53,6 @@ abstract class BaseChartRenderer<T> {
   }
 
   TextStyle getTextStyle(Color color){
-    return TextStyle(fontSize: ChartStyle.defaultTextSize,color: color);
+    return TextStyle(fontSize: ChartStyle.defaultTextSize,color: color, fontWeight: FontWeight.w500);
   }
 }

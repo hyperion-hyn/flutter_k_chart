@@ -293,7 +293,8 @@ class ChartPainter extends BaseChartPainter {
     var max = (mTranslateX.abs() + mMarginRight - getMinTranslateX().abs() + mPointWidth) * scaleX;
     double x = mWidth - max;
     if (!isLine) x += mPointWidth / 2;
-    var dashWidth = 10;
+    //var dashWidth = 10;
+    var dashWidth = 5;
     var dashSpace = 5;
     double startX = 0;
     final space = (dashSpace + dashWidth);
@@ -316,6 +317,7 @@ class ChartPainter extends BaseChartPainter {
       }
       double left = mWidth - tp.width;
       double top = y - tp.height / 2;
+
       canvas.drawRect(Rect.fromLTRB(left, top, left + tp.width, top + tp.height),
           realTimePaint..color = ChartColors.realTimeBgColor);
       tp.paint(canvas, Offset(left, top));
@@ -333,7 +335,7 @@ class ChartPainter extends BaseChartPainter {
         startX += space;
       }
 
-      const padding = 3.0;
+      const padding = 6.0;
       const triangleHeight = 8.0; //三角高度
       const triangleWidth = 5.0; //三角宽度
 
@@ -344,8 +346,9 @@ class ChartPainter extends BaseChartPainter {
       double bottom = top + tp.height + padding * 2;
       double radius = (bottom - top) / 2;
       //画椭圆背景
+      double borderWidth = 0.5;
       RRect rectBg1 = RRect.fromLTRBR(left, top, right, bottom, Radius.circular(radius));
-      RRect rectBg2 = RRect.fromLTRBR(left - 1, top - 1, right + 1, bottom + 1, Radius.circular(radius + 2));
+      RRect rectBg2 = RRect.fromLTRBR(left - borderWidth, top - borderWidth, right + borderWidth, bottom + borderWidth, Radius.circular(radius + 2));
       canvas.drawRRect(rectBg2, realTimePaint..color = ChartColors.realTimeTextBorderColor);
       canvas.drawRRect(rectBg1, realTimePaint..color = ChartColors.realTimeBgColor);
       tp = getTextPainter(format(point.close), color: ChartColors.realTimeTextColor);
@@ -362,13 +365,13 @@ class ChartPainter extends BaseChartPainter {
       canvas.drawPath(
           path,
           realTimePaint
-            ..color = ChartColors.realTimeTextBorderColor
+            ..color = ChartColors.realTimeTextColor
             ..shader = null);
     }
   }
 
-  TextPainter getTextPainter(text, {color = ChartColors.selectedTextColor}) {
-    TextSpan span = TextSpan(text: "$text", style: getTextStyle(color));
+  TextPainter getTextPainter(text, {color = ChartColors.selectedTextColor, double fontSize}) {
+    TextSpan span = TextSpan(text: "$text", style: getTextStyle(color, fontSize: fontSize));
     TextPainter tp = TextPainter(text: span, textDirection: TextDirection.ltr);
     tp.layout();
     return tp;

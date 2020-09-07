@@ -67,21 +67,25 @@ class DepthChartPainter extends CustomPainter {
   DepthChartPainter(this.mBuyData, this.mSellData, this.pressOffset, this.isLongPress) {
     mBuyLinePaint ??= Paint()
       ..isAntiAlias = true
-      ..color = ChartColors.depthBuyColor
+      ..color = ChartColors.depthBuyLineColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0;
     mSellLinePaint ??= Paint()
       ..isAntiAlias = true
-      ..color = ChartColors.depthSellColor
+      ..color = ChartColors.depthSellLineColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0;
 
     mBuyPathPaint ??= Paint()
       ..isAntiAlias = true
-      ..color = ChartColors.depthBuyColor.withOpacity(0.2);
+      ..color = ChartColors.depthBuyColor.withOpacity(1.0);
+//    ..color = ChartColors.depthBuyColor.withOpacity(0.2);
+
     mSellPathPaint ??= Paint()
       ..isAntiAlias = true
-      ..color = ChartColors.depthSellColor.withOpacity(0.2);
+      ..color = ChartColors.depthSellColor.withOpacity(1.0);
+//    ..color = ChartColors.depthBuyColor.withOpacity(0.2);
+
     mBuyPath ??= Path();
     mSellPath ??= Path();
     init();

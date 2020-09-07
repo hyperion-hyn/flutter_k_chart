@@ -129,7 +129,7 @@ abstract class BaseChartPainter extends CustomPainter {
     } else if (volState == VolState.NONE || secondaryState == SecondaryState.NONE) {
       mainHeight = mDisplayHeight * 0.8;
     }
-    mMainRect = Rect.fromLTRB(0, ChartStyle.topPadding, mWidth, ChartStyle.topPadding + mainHeight);
+    mMainRect = Rect.fromLTRB(0, 8+ChartStyle.topPadding, mWidth, ChartStyle.topPadding + mainHeight);
     if(volState != VolState.NONE){
       mVolRect = Rect.fromLTRB(0, mMainRect.bottom + ChartStyle.childPadding, mWidth, mMainRect.bottom + volHeight);
     }

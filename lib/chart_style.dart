@@ -109,7 +109,8 @@ class ChartColors {
   static Color depthSellLineColor = Color(0xffCF3756);
 
   //选中后显示值边框颜色
-  static const Color markerBorderColor = Color(0xff000000);
+//  static const Color markerBorderColor = Color(0xff000000);
+  static const Color markerBorderColor = Color(0xffEEF0F3);
 
   //选中后显示值背景的填充颜色
   static const Color markerBgColor = Color(0xffffffff);
@@ -155,11 +156,9 @@ class ChartStyle {
 
   //垂直交叉线宽度
   static const double vCrossWidth = 8.5;
-//  static const double vCrossWidth = 0.25;
 
   //水平交叉线宽度
   static const double hCrossWidth = 0.5;
-//  static const double hCrossWidth = 0.25;
 
   //网格
   static const int gridRows = 3, gridColumns = 5;

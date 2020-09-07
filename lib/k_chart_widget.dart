@@ -172,7 +172,9 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 7),
               decoration: BoxDecoration(
                   color: ChartColors.markerBgColor,
-                  border: Border.all(color: ChartColors.markerBorderColor, width: 0.5)),
+                  border: Border.all(color: ChartColors.markerBorderColor, width: 0.5),
+                  borderRadius: BorderRadius.circular(8),
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(infoNames.length, (i) => _buildItem(infos[i].toString(), infoNames[i])),

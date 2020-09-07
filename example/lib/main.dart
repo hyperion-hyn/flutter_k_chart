@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 10,
+                    height: 0,
                     color: Colors.white,
                   ),
                   SizedBox(

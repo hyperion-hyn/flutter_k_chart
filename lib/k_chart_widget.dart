@@ -18,8 +18,17 @@ class KChartWidget extends StatefulWidget {
   final VolState volState;
   final SecondaryState secondaryState;
   final bool isLine;
+  final String locale;
 
-  KChartWidget(this.datas, {this.mainState = MainState.MA,this.volState = VolState.VOL, this.secondaryState = SecondaryState.MACD, this.isLine,int fractionDigits = 2}){
+  KChartWidget(
+    this.datas, {
+    this.mainState = MainState.MA,
+    this.volState = VolState.VOL,
+    this.secondaryState = SecondaryState.MACD,
+    this.isLine,
+    int fractionDigits = 2,
+    this.locale = "zh_CN",
+  }) {
     NumberUtil.fractionDigits = fractionDigits;
   }
 
@@ -27,7 +36,7 @@ class KChartWidget extends StatefulWidget {
   _KChartWidgetState createState() => _KChartWidgetState();
 }
 
-class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderStateMixin{
+class _KChartWidgetState extends State<KChartWidget> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
   double mScaleX = 1.0, mScrollX = 0.0, mSelectX = 0.0;
@@ -53,6 +62,77 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
   void didChangeDependencies() {
     super.didChangeDependencies();
     mWidth = MediaQuery.of(context).size.width;
+
+    /*
+    {
+      "date": "时间",
+    "open": "开",
+    "high": "高",
+    "low": "低",
+    "close": "收",
+    "down_up": "涨跌额",
+    "down_down": "涨幅",
+    "amount": "成交量"
+    }
+    */
+
+    var date = "时间";
+    var open = "开";
+    var high = "高";
+    var low = "低";
+    var close = "收";
+    var downUp = "涨跌额";
+    var downDown = "涨幅";
+    var amount = "成交量";
+    print("[object] widget.locale.languageCode:${widget.locale}");
+
+    switch (widget.locale) {
+      case "zh_CN":
+        date = "时间";
+        open = "开";
+        high = "高";
+        low = "低";
+        close = "收";
+        downUp = "涨跌额";
+        downDown = "涨幅";
+        amount = "成交量";
+        break;
+
+      case "zh_HK":
+        date = "時間";
+        open = "開";
+        high = "高";
+        low = "低";
+        close = "收";
+        downUp = "漲跌額";
+        downDown = "漲幅";
+        amount = "成交量";
+        break;
+
+      case "ko":
+        date = "시간";
+        open = "열기";
+        high = "높음";
+        low = "낮음";
+        close = "닫기";
+        downUp = "변화량";
+        downDown = "증가";
+        amount = "거래량";
+        break;
+
+      case "en":
+        date = "Time";
+        open = "Open";
+        high = "High";
+        low = "Low";
+        close = "Close";
+        downUp = "Change";
+        downDown = "Increase";
+        amount = "Volume";
+
+        break;
+    }
+    infoNames = [date, open, high, low, close, downUp, downDown, amount];
   }
 
   @override
@@ -171,9 +251,9 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
               margin: EdgeInsets.only(left: 10, right: 10, top: 25),
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 7),
               decoration: BoxDecoration(
-                  color: ChartColors.markerBgColor,
-                  border: Border.all(color: ChartColors.markerBorderColor, width: 0.5),
-                  borderRadius: BorderRadius.circular(8),
+                color: ChartColors.markerBgColor,
+                border: Border.all(color: ChartColors.markerBorderColor, width: 0.5),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -199,7 +279,11 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text("$infoName", style: TextStyle(color: ChartColors.selectedTextColor, fontSize: ChartStyle.defaultTextSize, fontWeight: FontWeight.w500)),
+          Text("$infoName",
+              style: TextStyle(
+                  color: ChartColors.selectedTextColor,
+                  fontSize: ChartStyle.defaultTextSize,
+                  fontWeight: FontWeight.w500)),
           SizedBox(width: 5),
           Text(info, style: TextStyle(color: color, fontSize: ChartStyle.defaultTextSize, fontWeight: FontWeight.w500)),
         ],

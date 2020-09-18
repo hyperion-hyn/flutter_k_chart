@@ -37,6 +37,17 @@ class KLineEntity extends KEntity {
     return data;
   }
 
+  KLineEntity.emptyItem() {
+    open = 0.0;
+    high = 0.0;
+    low = 0.0;
+    close = 0.0;
+    vol = 0.0;
+    amount = 0.0;
+    count = 0;
+    id = 0;
+  }
+  
   @override
   String toString() {
     return 'MarketModel{open: $open, high: $high, low: $low, close: $close, vol: $vol, id: $id}';
